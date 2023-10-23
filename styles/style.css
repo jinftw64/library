@@ -58,14 +58,6 @@ body {
 
 .bookshelf {
   display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-}
-
-.book:first-child {
-  background-color: blue;
-}
-
-.book:nth-child(2) {
-  background-color: grey;
+  grid-template-rows: repeat(2, minmax(300px, 400px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
 }
