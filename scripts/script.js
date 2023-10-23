@@ -14,6 +14,11 @@ function Book(author, title, pages, read, isbn) {
 }
 
 
+function submitAddBook() {
+  dialog.close()
+}
+
+
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
@@ -55,6 +60,13 @@ const alice = new Book('Lewis Carroll', 'Alice in Wonderland', 70, true, '978184
 const hobbit = new Book('J. R. R. Tolkien', 'The Hobbit', 800, true, '9780458920303');
 const warandpeace = new Book('Leo Tolstoy', 'War and Peace', 2130, false, '9780007488315');
 const assassin = new Book('Robin Hobb', 'Assassin\'s Apprentice', 400, true, '055357339X');
+
+const dialog = document.querySelector('dialog')
+const addBookButton = document.querySelector('.container > button')
+
+addBookButton.addEventListener('click', () => {
+  dialog.showModal();
+})
 
 
 addBookToLibrary(alice)
