@@ -56,8 +56,31 @@ body {
 
 /* my code begins here */
 
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10rem;
+  gap: 2rem;
+}
+
 .bookshelf {
   display: grid;
   grid-template-rows: repeat(2, minmax(300px, 400px));
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+}
+
+.container > header {
+  align-self: center;
+}
+
+.container > button {
+  width: 100px;
+  align-self: center;
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
