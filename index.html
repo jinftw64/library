@@ -31,15 +31,17 @@
           <label for="isbn">ISBN</label>
           <input type="isbn" id="isbn" name="isbn">
 
-          <input type="radio" id="read" name="readOrUnread" value="read">
-          <label for="read">Read</label>
-          
-          <input type="radio" id="unread" name="readOrUnread" value="unread">
-          <label for="unread">Unread</label>
-
-          <button type="button" id="cancel">Cancel</button>
+          <div class="radio-buttons">
+            <input type="radio" id="read" name="readOrUnread" value="read">
+            <label for="read">Read</label>
+            
+            <input type="radio" id="unread" name="readOrUnread" value="unread">
+            <label for="unread">Unread</label>
+          </div>
 
           <button type="button" id="submit">Submit</button>
+
+          <button type="button" id="cancel">Cancel</button>
         </dialog>
 
         <section class="bookshelf">
