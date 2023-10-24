@@ -67,6 +67,7 @@ body {
   display: grid;
   grid-template-rows: repeat(2, minmax(300px, 400px));
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+  gap: 50px;
 }
 
 .container > header {

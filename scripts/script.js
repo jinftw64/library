@@ -14,8 +14,13 @@ function Book(author, title, pages, read, isbn) {
 }
 
 
-function addBookToLibrary(book) {
+function addToLibrary(book) {
   myLibrary.push(book);
+}
+
+
+function removeFromLibrary(bookIndex) {
+  myLibrary.splice(bookIndex, 1);
 }
 
 
@@ -35,6 +40,8 @@ function displayBooks(library) {
     bookDiv.dataset.location = i
     bookshelf.appendChild(bookDiv)
   }
+
+  clickDelete();
 }
 
 
@@ -51,7 +58,7 @@ function createBookElement(book) {
   const deleteBook = document.createElement('button')
   bookButtonsDiv.classList.add('bookButtons')
   readOrUnread.setAttribute('id', 'toggle-read')
-  deleteBook.setAttribute('id', 'deleteBook')
+  deleteBook.setAttribute('class', 'deleteBook')
   deleteBook.textContent = 'Delete'
   bookButtonsDiv.appendChild(readOrUnread)
   bookButtonsDiv.appendChild(deleteBook)
@@ -85,6 +92,18 @@ function getCoverArt(book) {
 }
 
 
+function clickDelete() {
+  const deleteBookButtons = document.querySelectorAll('.deleteBook')
+  deleteBookButtons.forEach(button => {
+    button.addEventListener('click', function(event) {
+      const index = event.target.parentElement.parentElement.dataset.location;
+      removeFromLibrary(index);
+      displayBooks(myLibrary);
+    })
+  })
+}
+
+
 // sample books to seed library shelves
 const alice = new Book('Lewis Carroll', 'Alice in Wonderland', 70, true, '9781841353463');
 const hobbit = new Book('J. R. R. Tolkien', 'The Hobbit', 800, true, '9780458920303');
@@ -95,6 +114,7 @@ const dialog = document.querySelector('dialog')
 const addBookButton = document.querySelector('.container > button')
 const cancelAddBookButton = document.querySelector('#cancel')
 const submitAddBookButton = document.querySelector('#submit')
+
 
 addBookButton.addEventListener('click', () => {
   dialog.showModal();
@@ -118,7 +138,7 @@ submitAddBookButton.addEventListener('click', (event) => {
 
   const book = new Book(author, title, pages, read, isbn)
 
-  addBookToLibrary(book);
+  addToLibrary(book);
   displayBooks(myLibrary);
 
   document.querySelector('form').reset();
@@ -126,9 +146,9 @@ submitAddBookButton.addEventListener('click', (event) => {
 
 
 // seed the shelf with some sample books
-addBookToLibrary(alice)
-addBookToLibrary(hobbit)
-addBookToLibrary(warandpeace)
-addBookToLibrary(assassin)
+addToLibrary(alice)
+addToLibrary(hobbit)
+addToLibrary(warandpeace)
+addToLibrary(assassin)
 
 displayBooks(myLibrary)
