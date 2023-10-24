@@ -14,10 +14,6 @@ function Book(author, title, pages, read, isbn) {
 }
 
 
-function submitAddBook() {
-  dialog.close()
-}
-
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -26,7 +22,13 @@ function addBookToLibrary(book) {
 
 function displayBooks(library) {
   // display all books in array
-  const bookshelf = document.getElementsByClassName('bookshelf')[0]
+  const bookshelf = document.querySelector('.bookshelf')
+  let childBook = bookshelf.lastElementChild
+
+  while (childBook) {
+    bookshelf.removeChild(childBook);
+    childBook = bookshelf.lastElementChild
+  }
 
   library.forEach(book => {
     const bookDiv = createBookElement(book)
@@ -63,9 +65,33 @@ const assassin = new Book('Robin Hobb', 'Assassin\'s Apprentice', 400, true, '05
 
 const dialog = document.querySelector('dialog')
 const addBookButton = document.querySelector('.container > button')
+const cancelAddBookButton = document.querySelector('#cancel')
+const submitAddBookButton = document.querySelector('#submit')
 
 addBookButton.addEventListener('click', () => {
   dialog.showModal();
+})
+
+cancelAddBookButton.addEventListener('click', () => {
+  dialog.close();
+  // clear the fields
+})
+
+submitAddBookButton.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  const author = document.getElementById('author').value
+  const title = document.getElementById('title').value
+  const pages = document.getElementById('pages').value
+  const isbn = document.getElementById('isbn').value
+  const read = document.querySelector('input[name="readOrUnread"]:checked').value
+
+  const book = new Book(author, title, pages, read, isbn)
+
+  addBookToLibrary(book);
+  displayBooks(myLibrary);
+
+  document.querySelector('form').reset();
 })
 
 
