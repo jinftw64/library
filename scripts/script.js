@@ -43,6 +43,7 @@ function displayBooks(library) {
   }
 
   setDeleteButtons();
+  setToggles();
 }
 
 
@@ -111,11 +112,12 @@ function setDeleteButtons() {
 
 
 function setToggles() {
-  const readToggleSwitches = document.querySelectorAll('.checkbox');
+  const readToggleSwitches = document.querySelectorAll('.switch > input');
   readToggleSwitches.forEach(checkbox => {
     checkbox.addEventListener('change', function(event) {
-      const index = event.target.parentElement.parentElement.dataset.location;
-      // more stuff here
+      const index = event.target.parentElement.parentElement.parentElement.dataset.location;
+      const book = myLibrary[index]
+      book.read = checkbox.checked
     })
   })
 }
