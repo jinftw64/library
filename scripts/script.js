@@ -36,12 +36,13 @@ function displayBooks(library) {
   }
 
   for (let i = 0; i < library.length; i++) {
-    const bookDiv = createBookElement(library[i])
+    const currentBook = library[i]
+    const bookDiv = createBookElement(currentBook)
     bookDiv.dataset.location = i
     bookshelf.appendChild(bookDiv)
   }
 
-  clickDelete();
+  setDeleteButtons();
 }
 
 
@@ -54,13 +55,15 @@ function createBookElement(book) {
   newImg.src = getCoverArt(book)
 
   const bookButtonsDiv = document.createElement('div')
-  const readOrUnread = createReadToggle()
+  const readToggle = createReadToggle(book.read)
   const deleteBook = document.createElement('button')
   bookButtonsDiv.classList.add('bookButtons')
-  readOrUnread.setAttribute('id', 'toggle-read')
+
+  readToggle.setAttribute('id', 'toggle-read')
+
   deleteBook.setAttribute('class', 'deleteBook')
   deleteBook.textContent = 'Delete'
-  bookButtonsDiv.appendChild(readOrUnread)
+  bookButtonsDiv.appendChild(readToggle)
   bookButtonsDiv.appendChild(deleteBook)
 
   newBook.appendChild(newImg)
@@ -70,7 +73,7 @@ function createBookElement(book) {
 }
 
 
-function createReadToggle() {
+function createReadToggle(read) {
   const label = document.createElement('label')
   const input = document.createElement('input')
   const span = document.createElement('span')
@@ -78,6 +81,8 @@ function createReadToggle() {
   label.setAttribute('class', 'switch')
   input.setAttribute('type', 'checkbox')
   span.setAttribute('class', 'slider round')
+
+  input.checked = read
 
   label.appendChild(input)
   label.appendChild(span)
@@ -92,13 +97,25 @@ function getCoverArt(book) {
 }
 
 
-function clickDelete() {
+// create array of the current delete buttons and apply event listener
+function setDeleteButtons() {
   const deleteBookButtons = document.querySelectorAll('.deleteBook')
   deleteBookButtons.forEach(button => {
     button.addEventListener('click', function(event) {
       const index = event.target.parentElement.parentElement.dataset.location;
       removeFromLibrary(index);
       displayBooks(myLibrary);
+    })
+  })
+}
+
+
+function setToggles() {
+  const readToggleSwitches = document.querySelectorAll('.checkbox');
+  readToggleSwitches.forEach(checkbox => {
+    checkbox.addEventListener('change', function(event) {
+      const index = event.target.parentElement.parentElement.dataset.location;
+      // more stuff here
     })
   })
 }
