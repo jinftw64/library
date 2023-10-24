@@ -14,12 +14,12 @@ function Book(author, title, pages, read, isbn) {
 }
 
 
-
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
 
+// remove all books from shelf and then populate books from library onto shelf
 function displayBooks(library) {
   // display all books in array
   const bookshelf = document.querySelector('.bookshelf')
@@ -37,8 +37,8 @@ function displayBooks(library) {
 }
 
 
+// create html element of book and its properties
 function createBookElement(book) {
-  // create html element of book and its properties
   const newBook = document.createElement('div')
   newBook.classList.add('book')
 
@@ -51,8 +51,8 @@ function createBookElement(book) {
 }
 
 
+// use Open Library Covers API to retrieve cover art
 function getCoverArt(book) {
-  // use Open Library Covers API to retrieve cover art
   return `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`
 }
 
@@ -77,6 +77,8 @@ cancelAddBookButton.addEventListener('click', () => {
   // clear the fields
 })
 
+// get values from inputs, instantiate new book object, add book to library,
+// display library, and finally reset dialog form
 submitAddBookButton.addEventListener('click', (event) => {
   event.preventDefault();
 
@@ -95,6 +97,7 @@ submitAddBookButton.addEventListener('click', (event) => {
 })
 
 
+// seed the shelf with some sample books
 addBookToLibrary(alice)
 addBookToLibrary(hobbit)
 addBookToLibrary(warandpeace)
