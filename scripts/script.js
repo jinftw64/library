@@ -30,10 +30,11 @@ function displayBooks(library) {
     childBook = bookshelf.lastElementChild
   }
 
-  library.forEach(book => {
-    const bookDiv = createBookElement(book)
+  for (let i = 0; i < library.length; i++) {
+    const bookDiv = createBookElement(library[i])
+    bookDiv.dataset.location = i
     bookshelf.appendChild(bookDiv)
-  });
+  }
 }
 
 
@@ -45,9 +46,36 @@ function createBookElement(book) {
   const newImg = document.createElement('img')
   newImg.src = getCoverArt(book)
 
+  const bookButtonsDiv = document.createElement('div')
+  const readOrUnread = createReadToggle()
+  const deleteBook = document.createElement('button')
+  bookButtonsDiv.classList.add('bookButtons')
+  readOrUnread.setAttribute('id', 'toggle-read')
+  deleteBook.setAttribute('id', 'deleteBook')
+  deleteBook.textContent = 'Delete'
+  bookButtonsDiv.appendChild(readOrUnread)
+  bookButtonsDiv.appendChild(deleteBook)
+
   newBook.appendChild(newImg)
+  newBook.appendChild(bookButtonsDiv)
 
   return newBook
+}
+
+
+function createReadToggle() {
+  const label = document.createElement('label')
+  const input = document.createElement('input')
+  const span = document.createElement('span')
+
+  label.setAttribute('class', 'switch')
+  input.setAttribute('type', 'checkbox')
+  span.setAttribute('class', 'slider round')
+
+  label.appendChild(input)
+  label.appendChild(span)
+
+  return label
 }
 
 
