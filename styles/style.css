@@ -121,6 +121,19 @@ dialog::backdrop {
 .bookButtons {
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.book {
+  position: relative;
+}
+
+.book > img {
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
 }
 
 
