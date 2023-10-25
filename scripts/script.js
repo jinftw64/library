@@ -153,7 +153,7 @@ submitAddBookButton.addEventListener('click', (event) => {
   const title = document.getElementById('title').value
   const pages = document.getElementById('pages').value
   const isbn = document.getElementById('isbn').value
-  const read = document.querySelector('input[name="readOrUnread"]:checked').value
+  const read = document.querySelector('input[name="readOrUnread"]:checked').value === 'read' ? true : false
 
   const book = new Book(author, title, pages, read, isbn)
 
