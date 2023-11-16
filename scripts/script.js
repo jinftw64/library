@@ -5,12 +5,14 @@ const myLibrary = [];
 
 
 // constructor
-function Book(author, title, pages, read, isbn) {
-  this.author = author
-  this.title = title
-  this.pages = pages
-  this.read = read
-  this.isbn = isbn
+class Book {
+  constructor(author, title, pages, read, isbn) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.read = read;
+    this.isbn = isbn;
+  }
 }
 
 
